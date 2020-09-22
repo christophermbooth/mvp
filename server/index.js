@@ -26,31 +26,31 @@ app.get('/', (req, res) => {
 
 app.post('/games', (req, res) => {
   console.log(req.body, '<======= REQ BODY')
-  res.status(200)
-  res.end();
+  // res.status(200)
+  // res.end();
   // let testGame = {
   //   id: 451512,
   //   name: 'TEST GAME 9000'
   // }
-  // Game.find(testGame)
-  //   .then(result => {
-  //     if(!result.length) {
-  //       console.log('Now saving new entry')
-  //       new Game(testGame).save()
-  //         .then((savedGame) => {
-  //           res.status(200)
-  //           res.send(savedGame);
-  //           return;
-  //         })
-  //     }else{
-  //       console.log('Entry already exists for game, skipping')
-  //       res.status(302)
-  //       res.send();
-  //     }
-  //   })
-  //   .catch((err)=> {
-  //     console.log('Something went wrong querying the server: ', err)
-  //   })
+  Game.find({name: req.body.name})
+    .then(result => {
+      if(!result.length) {
+        console.log('Now saving new entry')
+        new Game(req.body).save()
+          .then((savedGame) => {
+            res.status(200)
+            res.send(savedGame);
+            return;
+          })
+      }else{
+        console.log('Entry already exists for game, skipping')
+        res.status(200)
+        res.send(result);
+      }
+    })
+    .catch((err)=> {
+      console.log('Something went wrong querying the server: ', err)
+    })
 })
 
 

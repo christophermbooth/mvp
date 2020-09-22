@@ -9,7 +9,6 @@ const SearchEntry = (props) => (
           <button onClick={()=> props.addGame()}>Add Game To Library</button>
         </span>
       </div>
-
 )
 
 export default SearchEntry;

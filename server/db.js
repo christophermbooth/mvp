@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/boards', {useCreateIndex: true, useN
 
 const gameSchema = new mongoose.Schema({
   id: {
-    type: Number,
+    type: String,
     unique: true,
     index: true
   },
