@@ -48,7 +48,11 @@ class App extends React.Component {
     return (
        <div>
          <header>Welcome to Your Games Library</header>
-         <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame}/>
+         <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
+         -----------------------------------
+         ELEMENT WITH SEARCHED GAME GOES HERE
+         ------------------------------------
+         LIST OF ALL GAMES IN LIBRARY GOES HERE
        </div>
     ) 
 
