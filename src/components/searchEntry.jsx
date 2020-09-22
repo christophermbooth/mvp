@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GameEntry = (props) => (
+const SearchEntry = (props) => (
       <div className='gameItem'>
         <span className='gameImage'><img src={props.item.image_url}></img></span>
         <span className='gameTitle'><header>{props.item.name}</header></span>
@@ -12,4 +12,4 @@ const GameEntry = (props) => (
 
 )
 
-export default GameEntry;
+export default SearchEntry;

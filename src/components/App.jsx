@@ -1,8 +1,9 @@
 // import e from 'express';
 import React, { Component } from 'react';
 import Search from './search'
-import GameEntry from './gameEntry'
+import SearchEntry from './searchEntry'
 import GameList from './gameList'
+import GameEntry from './gameListEntry'
 import axios from 'axios';
 
 
@@ -63,7 +64,7 @@ class App extends React.Component {
        <div>
          <header>Welcome to Your Games Library</header>
          <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
-         <GameEntry item={searchedGame} addGame ={this.addGame}/>
+         <SearchEntry item={searchedGame} addGame ={this.addGame}/>
          <GameList games={gameData} />
        </div>
     ) 
