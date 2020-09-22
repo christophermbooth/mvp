@@ -25,13 +25,6 @@ app.get('/', (req, res) => {
 
 
 app.post('/games', (req, res) => {
-  console.log(req.body, '<======= REQ BODY')
-  // res.status(200)
-  // res.end();
-  // let testGame = {
-  //   id: 451512,
-  //   name: 'TEST GAME 9000'
-  // }
   Game.find({name: req.body.name})
     .then(result => {
       if(!result.length) {

@@ -21,6 +21,11 @@ class App extends React.Component {
     this.addGame = this.addGame.bind(this);
   }
 
+  componentDidMount(){
+    axios.get('http://localhost:8080/games')
+    .then(result => this.setState({gameData: result.data}))
+  }
+  
   searchHandler(event){
     this.setState({
       searchText: event.target.value
@@ -31,7 +36,6 @@ class App extends React.Component {
     let {searchText} = this.state;
     axios.get(`https://api.boardgameatlas.com/api/search?name=${searchText}&client_id=DtCQNjLWfm&limit=1`)
       .then(result => {
-        // console.log(result)
         this.setState({
           searchedGame: result.data.games[0]
         })
@@ -55,19 +59,30 @@ class App extends React.Component {
         }
       )
       .catch((err) => {console.log('Could not post to server'), err})
-
   }
+
+  
 
   render() {
     let {searchedGame, gameData} = this.state;
-    return (
-       <div>
-         <header>Welcome to Your Games Library</header>
-         <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
-         <SearchEntry item={searchedGame} addGame ={this.addGame}/>
-         <GameList games={gameData} />
-       </div>
-    ) 
+    if (Object.keys(searchedGame).length) {
+      return (
+        <div>
+          <header>Welcome to Your Games Library</header>
+          <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
+          <SearchEntry item={searchedGame} addGame ={this.addGame}/>
+          <GameList games={gameData} />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <header>Welcome to Your Games Library</header>
+          <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
+          <GameList games={gameData} />
+        </div>
+      )
+    }
   }
 }
 

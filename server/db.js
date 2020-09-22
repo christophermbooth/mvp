@@ -31,11 +31,12 @@ const gameSchema = new mongoose.Schema({
     index: true
   },
   name: String,
-  minPlayers: Number,
-  maxPlayers: Number,
-  minPlayTime: Number,
-  maxPlayTime: Number,
-  averageUserRating: Number,
+  min_players: Number,
+  max_players: Number,
+  min_playtime: Number,
+  max_playtime: Number,
+  average_user_rating: Number,
+  description: String,
   userVotes: {
     type: Number,
     default: 0
