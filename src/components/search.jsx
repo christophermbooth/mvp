@@ -4,7 +4,7 @@ const Search = (props) => (
       <div className='search'>
         <input type="text" onChange={(event) => {props.searchHandler(event)}}/>
         <button onClick={() => props.searchForGame()}>
-          <span>Find My Game!!</span>
+          <span>Find My Game!</span>
         </button>
       </div>
 

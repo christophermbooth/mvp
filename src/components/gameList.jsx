@@ -1,10 +1,10 @@
 import React from 'react';
-import GameEntry from './gameEntry'
+import GameListEntry from './gameEntry'
 
 const GameList = (props) => (
       <div className='gameList'>
         <h2>Your Library:</h2>
-        {props.games.map(game => <GameEntry item={game} />)}
+        {props.games.map((game, index) => <GameListEntry item={game} key={index} />)}
       </div>
 
 )

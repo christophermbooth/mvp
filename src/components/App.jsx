@@ -40,10 +40,10 @@ class App extends React.Component {
   addGame(){
     let {searchedGame} = this.state
     console.log(`Now attempting to add ${searchedGame.name} to the local database`);
-    axios.post('http://localhost:3000/games', searchedGame)
+    axios.post('http://localhost:8080/games', searchedGame)
       .then(() => {
         console.log('Game Added Successfully; Refreshing Games List')
-        axios.get('http://localhost:3000/games')
+        axios.get('http://localhost:8080/games')
           .then((result) => {
             console.log(result);
             this.setState({
