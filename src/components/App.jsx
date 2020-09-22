@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Search from './search'
 import GameEntry from './gameEntry'
+import GameList from './gameList'
 import axios from 'axios';
 
 
@@ -9,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameData : ['Example Game Data'],
+      gameData : [],
       searchText : '',
       gameEntries: [],
       searchedGame: {},
@@ -38,26 +39,34 @@ class App extends React.Component {
 
   addGame(){
     let {searchedGame} = this.state
-    axios.post('localhost:3000/games', searchedGame)
-      .then(result => {
-        console.log('Game Successfully Added')
-      })
-      .catch(err => console.log('Could not add game to database: ', err))
+    console.log(`Now attempting to add ${searchedGame.name} to the local database`);
+    axios.post('http://localhost:3000/games', searchedGame)
+      .then(() => {
+        console.log('Game Added Successfully; Refreshing Games List')
+        axios.get('http://localhost:3000/games')
+          .then((result) => {
+            console.log(result);
+            this.setState({
+              gameData: result.data,
+              searchedGame: {}
+            })
+          })
+        }
+      )
+      .catch((err) => {console.log('Could not post to server'), err})
+
   }
 
   render() {
+    let {searchedGame, gameData} = this.state;
     return (
        <div>
          <header>Welcome to Your Games Library</header>
          <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
-         -----------------------------------
-         ELEMENT WITH SEARCHED GAME GOES HERE
-         <GameEntry item={this.state.searchedGame} addGame ={this.addGame}/>
-         ------------------------------------
-         LIST OF ALL GAMES IN LIBRARY GOES HERE
+         <GameEntry item={searchedGame} addGame ={this.addGame}/>
+         <GameList games={gameData} />
        </div>
     ) 
-
   }
 }
 
