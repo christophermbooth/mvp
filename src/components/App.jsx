@@ -1,7 +1,7 @@
 // import e from 'express';
 import React, { Component } from 'react';
 import Search from './search'
-import Game from './gameEntry'
+import GameEntry from './gameEntry'
 import axios from 'axios';
 
 
@@ -16,6 +16,7 @@ class App extends React.Component {
     };
     this.searchHandler = this.searchHandler.bind(this);
     this.searchForGame = this.searchForGame.bind(this);
+    this.addGame = this.addGame.bind(this);
   }
 
   searchHandler(event){
@@ -51,6 +52,7 @@ class App extends React.Component {
          <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
          -----------------------------------
          ELEMENT WITH SEARCHED GAME GOES HERE
+         <GameEntry item={this.state.searchedGame} addGame ={this.addGame}/>
          ------------------------------------
          LIST OF ALL GAMES IN LIBRARY GOES HERE
        </div>

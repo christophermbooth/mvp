@@ -2,14 +2,9 @@ import React from 'react';
 
 const MostRecentGame = (props) => (
       <div className='recentGame'>
-        
+        <header></header>
       </div>
 
 )
-//   render() {
-//     return (
-//     )
-//   }
-// }
 
 export default MostRecentGame;
