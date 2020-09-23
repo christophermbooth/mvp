@@ -31,6 +31,7 @@ const gameSchema = new mongoose.Schema({
     index: true
   },
   name: String,
+  image_url: String,
   min_players: Number,
   max_players: Number,
   min_playtime: Number,
@@ -40,7 +41,7 @@ const gameSchema = new mongoose.Schema({
   userVotes: {
     type: Number,
     default: 0
-  }
+  },
 })
 
 const Game = mongoose.model('Game', gameSchema);

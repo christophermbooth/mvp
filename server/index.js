@@ -54,3 +54,30 @@ app.get('/games', (req, res) => {
     })
 });
 
+app.post('/updates', (req, res) => {
+  let {name, modifier} = req.body;
+  Game.updateOne({name}, { $inc: { userVotes: modifier }})
+    .then((result) => {
+      console.log(result);
+      res.status(200)
+      res.end()
+    })
+});
+
+
+
+app.delete('/games', (req, res) => {
+  console.log(req.url, '===== url');
+  console.log(req.params, '===== params');
+  console.log(req.body, '===== body');
+  console.log(req.data, '===== data');
+  // let splitUrl = req.url.split('=')
+  // console.log(splitUrl);
+  // let gameName = splitUrl[1]
+  // Game.deleteOne({name: gameName})
+  //   .then( () => {
+  //     res.status(200)
+  //     res.end();
+  //   })
+})
+

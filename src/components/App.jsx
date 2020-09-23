@@ -19,6 +19,8 @@ class App extends React.Component {
     this.searchHandler = this.searchHandler.bind(this);
     this.searchForGame = this.searchForGame.bind(this);
     this.addGame = this.addGame.bind(this);
+    this.changeCounter = this.changeCounter.bind(this);
+    this.deleteGame = this.deleteGame.bind(this);
   }
 
   componentDidMount(){
@@ -61,7 +63,39 @@ class App extends React.Component {
       .catch((err) => {console.log('Could not post to server'), err})
   }
 
-  
+
+  deleteGame(gameName){
+    axios.delete(`http://localhost:8080/games`, {
+      data: {
+        source: gameName
+      }
+    });
+    // console.log(`Game to be deleted: ${gameName}`);
+    // axios.delete(`http://localhost:8080/games?=${gameName}`)
+    //   .then(() => {
+    //     console.log('Game Deleted Successfully')
+    //     axios.get('http://localhost:8080/games')
+    //       .then(results => this.setState({ gameData: results.data}))
+    //   })
+  }
+
+
+  changeCounter(gameName, modifier){
+    const options = {
+      name: gameName,
+      modifier: modifier
+    }
+    axios.post(`http://localhost:8080/updates`, options)
+      .then(() => {
+        axios.get('http://localhost:8080/games')
+          .then((result) => {
+            // console.log(result);
+            this.setState({
+              gameData: result.data,
+            })
+          })
+      })
+  }
 
   render() {
     let {searchedGame, gameData} = this.state;
@@ -71,7 +105,7 @@ class App extends React.Component {
           <header>Welcome to Your Games Library</header>
           <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
           <SearchEntry item={searchedGame} addGame ={this.addGame}/>
-          <GameList games={gameData} />
+          <GameList games={gameData} changeCounter={this.changeCounter} deleteGame={this.deleteGame}/>
         </div>
       )
     } else {
@@ -79,7 +113,7 @@ class App extends React.Component {
         <div>
           <header>Welcome to Your Games Library</header>
           <Search searchHandler={this.searchHandler} searchForGame={this.searchForGame} />
-          <GameList games={gameData} />
+          <GameList games={gameData} changeCounter={this.changeCounter} deleteGame={this.deleteGame} />
         </div>
       )
     }
