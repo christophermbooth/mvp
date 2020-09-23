@@ -67,17 +67,16 @@ app.post('/updates', (req, res) => {
 
 
 app.delete('/games', (req, res) => {
-  console.log(req.url, '===== url');
-  console.log(req.params, '===== params');
-  console.log(req.body, '===== body');
-  console.log(req.data, '===== data');
-  // let splitUrl = req.url.split('=')
-  // console.log(splitUrl);
-  // let gameName = splitUrl[1]
-  // Game.deleteOne({name: gameName})
-  //   .then( () => {
-  //     res.status(200)
-  //     res.end();
-  //   })
+  // console.log(req.query, '==== QUERY')
+  let {gameName} = req.query;
+  console.log(gameName);
+  Game.deleteOne({name: gameName})
+    .then( () => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      console.error(err);
+      res.sendStatus(500)
+    })
 })
 

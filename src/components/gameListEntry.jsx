@@ -2,7 +2,7 @@ import React from 'react';
 
 const GameEntry = ({item, changeCounter, deleteGame}) => (
       <div className='gameListItem' data-game={item}>
-        <span className='gameListImage'><img class="gameListImage" src={item.image_url ? item.image_url : "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"}></img></span><br/>
+        <span className='gameListImage'><img className="gameListImage" src={item.image_url ? item.image_url : "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"}></img></span><br/>
         <span className='gameListTitle'>{item.name}</span><br/>
         <span className='gameListRating'>Average Rating:{item.average_user_rating}</span><br/>
         <span className='gameListDesc'>{item.description}</span><br/>

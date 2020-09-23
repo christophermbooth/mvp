@@ -65,18 +65,11 @@ class App extends React.Component {
 
 
   deleteGame(gameName){
-    axios.delete(`http://localhost:8080/games`, {
-      data: {
-        source: gameName
-      }
-    });
-    // console.log(`Game to be deleted: ${gameName}`);
-    // axios.delete(`http://localhost:8080/games?=${gameName}`)
-    //   .then(() => {
-    //     console.log('Game Deleted Successfully')
-    //     axios.get('http://localhost:8080/games')
-    //       .then(results => this.setState({ gameData: results.data}))
-    //   })
+    axios.delete(`http://localhost:8080/games?gameName=${gameName}`)
+      .then(() => {
+        axios.get('http://localhost:8080/games')
+          .then(results => this.setState({gameData: results.data}))
+      })
   }
 
 
