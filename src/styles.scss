@@ -1,7 +1,8 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
   Helvetica, Roboto, Arial, sans-serif;
-  color: teal;
+  color: #f4ebc1;
+  background-color: #726a95;
   .gameItem {
     .gameImageImg{
       max-height: 250px;
@@ -11,12 +12,46 @@ body {
     }
   }
   .gameListItem {
-    border: 3px solid red;
+    border: 3px solid ;
+    border-radius: 25px;
+    border-color: #a0c1b8;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     .gameListImage {
       max-height: 250px;
       max-width: 250px;
       height: auto;
       width: auto;
+    }
+    .increasePlayBtn{
+      color: #709fb0;
+      border-radius: 25px;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .decreasePlaysBtn{
+      color: #709fb0;
+      border-radius: 25px;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .deleteGameEntry{
+      color: red;
+      border-radius: 25px;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
     }
   }
 }

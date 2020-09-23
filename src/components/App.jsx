@@ -78,7 +78,7 @@ class App extends React.Component {
       name: gameName,
       modifier: modifier
     }
-    axios.post(`http://localhost:8080/updates`, options)
+    axios.put(`http://localhost:8080/games`, options)
       .then(() => {
         axios.get('http://localhost:8080/games')
           .then((result) => {

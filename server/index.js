@@ -54,7 +54,7 @@ app.get('/games', (req, res) => {
     })
 });
 
-app.post('/updates', (req, res) => {
+app.put('/games', (req, res) => {
   let {name, modifier} = req.body;
   Game.updateOne({name}, { $inc: { userVotes: modifier }})
     .then((result) => {

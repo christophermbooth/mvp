@@ -4,8 +4,7 @@ const GameEntry = ({item, changeCounter, deleteGame}) => (
       <div className='gameListItem' data-game={item}>
         <span className='gameListImage'><img className="gameListImage" src={item.image_url ? item.image_url : "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"}></img></span><br/>
         <span className='gameListTitle'>{item.name}</span><br/>
-        <span className='gameListRating'>Average Rating:{item.average_user_rating}</span><br/>
-        <span className='gameListDesc'>{item.description}</span><br/>
+        <span className='gameListRating'>Average Rating: {Math.floor(item.average_user_rating)}</span><br/>
         <span className='gameListMinPlayers'>Minimum Play Time: {item.min_playtime}</span><br/>
         <span className='gameListMaxPlayers'>Maximum Play Time: {item.max_playtime}</span><br/>
         <span className='gameListMinPlayers'>Minimum Players: {item.min_players}</span><br/>
