@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 })
 
 
-app.post('/games', (req, res) => {
+app.post('/api/games', (req, res) => {
   Game.find({name: req.body.name})
     .then(result => {
       if(!result.length) {
@@ -47,14 +47,14 @@ app.post('/games', (req, res) => {
 })
 
 
-app.get('/games', (req, res) => {
+app.get('/api/games', (req, res) => {
   Game.find({})
     .then(games => {
       res.status(200).send(games);
     })
 });
 
-app.put('/games', (req, res) => {
+app.put('/api/games', (req, res) => {
   let {name, modifier} = req.body;
   Game.updateOne({name}, { $inc: { userVotes: modifier }})
     .then((result) => {
@@ -66,7 +66,7 @@ app.put('/games', (req, res) => {
 
 
 
-app.delete('/games', (req, res) => {
+app.delete('/api/games', (req, res) => {
   // console.log(req.query, '==== QUERY')
   let {gameName} = req.query;
   console.log(gameName);

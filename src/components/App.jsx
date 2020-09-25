@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:8080/games')
+    axios.get('/api/games')
     .then(result => this.setState({gameData: result.data}))
   }
   
@@ -47,10 +47,10 @@ class App extends React.Component {
   addGame(){
     let {searchedGame} = this.state
     console.log(`Now attempting to add ${searchedGame.name} to the local database`);
-    axios.post('http://localhost:8080/games', searchedGame)
+    axios.post('/api/games', searchedGame)
       .then(() => {
         console.log('Game Added Successfully; Refreshing Games List')
-        axios.get('http://localhost:8080/games')
+        axios.get('/api/games')
           .then((result) => {
             console.log(result);
             this.setState({
@@ -65,9 +65,9 @@ class App extends React.Component {
 
 
   deleteGame(gameName){
-    axios.delete(`http://localhost:8080/games?gameName=${gameName}`)
+    axios.delete(`/api/games?gameName=${gameName}`)
       .then(() => {
-        axios.get('http://localhost:8080/games')
+        axios.get('/api/games')
           .then(results => this.setState({gameData: results.data}))
       })
   }
@@ -78,9 +78,9 @@ class App extends React.Component {
       name: gameName,
       modifier: modifier
     }
-    axios.put(`http://localhost:8080/games`, options)
+    axios.put(`/api/games`, options)
       .then(() => {
-        axios.get('http://localhost:8080/games')
+        axios.get('/api/games')
           .then((result) => {
             // console.log(result);
             this.setState({
